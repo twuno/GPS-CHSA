@@ -1,0 +1,235 @@
+//
+   Created by Walter Suazo on 10/02/2016.
+extends layout
+
+block content
+  h2= title
+
+  ul.nav.nav-tabs(role="tablist")
+    li(role="presentation")
+      a(href="#canbusTab" aria-controls="canbusTab" data-toggle="tab") Canbus
+    li(role="presentation")
+      a(href="#geocercaTab" aria-controls="geocercaTab" data-toggle="tab") Geocerca
+    li(role="presentation")
+      a(href="#motoristaTab" data-toggle="tab") Motorista
+
+  div.tab-content(id="mytabContent")
+    div.tab-pane.active(role="tabpanel" id="canbusTab")
+      div.bs-example()
+        figure.highlight()
+        pre
+          code.language-html(data-lang="html")
+            h3
+              kbd() Canbus
+            kbd() metodo: get
+            br
+            br
+            b request:ch.sabuesotrack.com/dps/canbus
+            br
+            ol.bg-info
+              li unidad: unidadid(1015040227)
+              li fechaDesde: Fecha Hora de inicio. En formato (YYYY-MM-DD HH:mm:ss)
+              li fechaHasta: Fecha Hora de fin. En formato (YYYY-MM-DD HH:mm:ss)
+            b ejemplo de Request: /canbus?unidad=1015040127&fechaDesde=2016-02-09%2019:20:14&fechaHasta=2016-02-10%2019:20:14
+            br
+            div()
+              a.btn.btn-success(role="button" data-toggle="collapse" href="#collapsecantrue" aria-expanded="false" aria-controls="collapsetrue") on Success:
+              a.btn.btn-danger(role="button" data-toggle="collapse" href="#collapsecanfalse" aria-expanded="false" aria-controls="collapsefalse") on Error:
+            div.collapse(id="collapsecantrue")
+              br
+              html.
+                <pre class="bg-success">
+                  {
+                    "msg": true,"
+                    "result": ["
+                      {
+                              "idfms1": 57627634,
+                              "unitid": "1015040127",
+                              "Odometer": "226355",
+                              "Total_fuel": "25388.3870706",
+                              "Actual_Speed": "0.0",
+                              "Actual_Engine_Speed": "697",
+                              "Actual_Engine_Torque": "13",
+                              "Accelerator_Pedal_Position": "0",
+                              "fecha": "2016-02-09 19:31:36"
+                            },
+                            {
+                              "idfms1": 57627660,
+                              "unitid": "1015040127",
+                              "Odometer": "226355",
+                              "Total_fuel": "25388.3870706",
+                              "Actual_Speed": "0.0",
+                              "Actual_Engine_Speed": "651",
+                              "Actual_Engine_Torque": "9",
+                              "Accelerator_Pedal_Position": "0",
+                              "fecha": "2016-02-09 19:31:55"
+                            }                      ],
+                    "cantidad": 2 }
+                </pre>
+            div.collapse(id="collapsecanfalse")
+              br
+              html.
+                <pre class="bg-danger">
+                  {
+                    "msg": false,"
+                  }
+                </pre>
+
+    div.tab-pane(role="tabpanel" id="geocercaTab")
+      div.bs-example()
+        figure.highlight()
+          pre
+            code.language-html(data-lang="html")
+              h3
+                kbd() Geocerca
+              kbd() metodo: get
+              br
+              br
+              b request:ch.sabuesotrack.com/dps/geocerca
+              br
+              ol.bg-info
+                li unidad: Unidadid
+                li fechaDesde: Fecha Hora de inicio. En formato (YYYY-MM-DD HH:mm:ss)
+                li fechaHasta: Fecha Hora de fin. En formato (YYYY-MM-DD HH:mm:ss)
+              b ejemplo de Request: /geocerca?unidad=1015040127&fechaDesde=2016-02-09 19:20:14&fechaHasta=2016-02-11 19:20:14
+              br
+              div()
+                a.btn.btn-success(role="button" data-toggle="collapse" href="#collapsegeotrue" aria-expanded="false" aria-controls="collapsetrue") on Success:
+                a.btn.btn-danger(role="button" data-toggle="collapse" href="#collapsegeofalse" aria-expanded="false" aria-controls="collapsefalse") on Error:
+              div.collapse(id="collapsegeotrue")
+                br
+                html.
+                  <pre class="bg-success">
+                    {
+                      "msg": true,"
+                      "result": ["
+                        {
+                          unitid: "1015043832",
+                          fecha: "2016-02-10 04:54:21",
+                          geocerca: "INICIO"
+                          },
+                          {
+                          unitid: "1015043832",
+                          fecha: "2016-02-10 16:31:09",
+                          geocerca: "FINAL"
+                          }
+                        ],
+                      "cantidad": 2
+                      }
+                  </pre>
+              div.collapse(id="collapsegeofalse")
+                br
+                html.
+                  <pre class="bg-danger">
+                    {
+                      "msg": false,"
+                    }
+                  </pre>
+
+    div.tab-pane(role="tabpanel" id="motoristaTab")
+      div.bs-example()
+        figure.highlight()
+          pre
+            code.language-html(data-lang="html")
+              h3
+                kbd() Motorista
+              kbd() metodo: get
+              br
+              br
+              b request:ch.sabuesotrack.com/dps/motorista
+              br
+              ol.bg-info
+                li unidad: Unidadid
+                li fechaDesde: Fecha Hora de inicio. En formato (YYYY-MM-DD HH:mm:ss)
+                li fechaHasta: Fecha Hora de fin. En formato (YYYY-MM-DD HH:mm:ss)
+              b ejemplo de Request: /motorista?unidad=1015040127&fechaDesde=2016-02-09 19:20:14&fechaHasta=2016-02-11 19:20:14
+              br
+              div()
+                a.btn.btn-success(role="button" data-toggle="collapse" href="#collapsetrue" aria-expanded="false" aria-controls="collapsetrue") on Success:
+                a.btn.btn-danger(role="button" data-toggle="collapse" href="#collapsefalse" aria-expanded="false" aria-controls="collapsefalse") on Error:
+              div.collapse(id="collapsetrue")
+                br
+                html.
+                  <pre class="bg-success">
+                    {
+                      "msg": true,"
+                      "result": ["
+                        {
+                          "idmotorista": "690000178B878301",
+                          "unitid": "1015040127",
+                          "fecha": "2016-02-09 19:50:55",
+                          "escaneo": "SI"
+                        },
+                        {
+                          "idmotorista": "690000178B878301",
+                          "unitid": "1015040127",
+                          "fecha": "2016-02-09 19:51:07",
+                          "escaneo": "SI"
+                        }
+                        ],
+                      "cantidad": 2 }
+                  </pre>
+              div.collapse(id="collapsefalse")
+                br
+                html.
+                  <pre class="bg-danger">
+                    {
+                      "msg": false,"
+                    }
+                  </pre>
+
+
+  h4.text-center Prueba de envio
+  div(ng-controller="request" style="max-height:50vh")
+    form.form-horizontal()
+      br
+      div.form-group()
+        label.col-sm-2.control-label() Recurso
+        div.col-sm-4()
+          select.form-control(id="Recurso" ng-model="recurso")
+            option(value="canbus") Canbus
+            option(value="geocerca") Geocerca
+            option(value="motorista") Motorista
+
+      div.form-group()
+        label.col-sm-2.control-label() Unidad
+        div.col-sm-4()
+          input.form-control(type="number" class="form-control" id="unidad" ng-model="unidad" placeholder="Unidad")
+
+      div.form-group()
+        label.col-sm-2.control-label() Fecha Desde
+        div.col-sm-4()
+          html.
+            <input ng-model="fechaDesde" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" />
+
+      div.form-group()
+        label.col-sm-2.control-label() Fecha Hasta
+        div.col-sm-4()
+          html.
+            <input ng-model="fechaHasta" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" />
+      br
+      div.form-group()
+        div.col-sm-offset-2.col-sm-10()
+          input(type="submit" class="btn btn-default" id="ok" ng-click="peticion()")
+
+    d-iv(id="result" style="height:100%")
+        pre(ng-bind="resultado")
+
+//  form.form-horizontal()
+    br
+    div.form-group()
+      label.col-sm-2.control-label() Unidad
+      div.col-sm-10()
+        input.form-control(type="number" class="form-control" id="unidad" placeholder="Unidad")
+    br
+    div.form-group()
+      label.col-sm-2.control-label() Servidor
+      div.col-sm-10()
+        select.form-control(id="Servidor")
+          option Honduras
+          option Cerveceria
+        //select(type="text" class="form-control" id="server" placeholder="Servidor")
+    br
+    div.form-group()
+      div.col-sm-offset-2.col-sm-10()
+        input(type="submit" class="btn btn-default" id="ok")

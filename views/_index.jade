@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{subtitle}
+  form.form-horizontal()
+    br
+    div.form-group()
+      label.col-sm-2.control-label() Unidad
+      div.col-sm-10()
+        input.form-control(type="email" class="form-control" id="unidad" placeholder="Unidad")
+    br
+    div.form-group()
+      label.col-sm-2.control-label() Servidor
+      div.col-sm-10()
+        select.form-control(id="Servidor")
+          option Honduras
+          option Cerveceria
+        //select(type="text" class="form-control" id="server" placeholder="Servidor")
+    br
+    div.form-group()
+      div.col-sm-offset-2.col-sm-10()
+        input(type="submit" class="btn btn-default" id="ok")
