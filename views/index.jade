@@ -3,9 +3,9 @@
 extends layout
 
 block content
-  h2= title
+  h3= title
 
-  ul.nav.nav-tabs(role="tablist")
+  ul.nav.nav-tabs(role="tablist" style="width:80%")
     li(role="presentation")
       a(href="#canbusTab" aria-controls="canbusTab" data-toggle="tab") Canbus
     li(role="presentation")
@@ -13,17 +13,17 @@ block content
     li(role="presentation")
       a(href="#motoristaTab" data-toggle="tab") Motorista
 
-  div.tab-content(id="mytabContent")
+  div.tab-content(id="mytabContent" style="width:90%")
     div.tab-pane.active(role="tabpanel" id="canbusTab")
       div.bs-example()
         figure.highlight()
         pre
           code.language-html(data-lang="html")
-            h3
+            h4
               kbd() Canbus
             kbd() metodo: get
             br
-            br
+
             b request:ch.sabuesotrack.com/dps/canbus
             br
             ol.bg-info
@@ -38,7 +38,7 @@ block content
             div.collapse(id="collapsecantrue")
               br
               html.
-                <pre class="bg-success">
+                <pre class="bg-success ejemplo">
                   {
                     "msg": true,"
                     "result": ["
@@ -80,11 +80,11 @@ block content
         figure.highlight()
           pre
             code.language-html(data-lang="html")
-              h3
+              h4
                 kbd() Geocerca
               kbd() metodo: get
               br
-              br
+
               b request:ch.sabuesotrack.com/dps/geocerca
               br
               ol.bg-info
@@ -99,7 +99,7 @@ block content
               div.collapse(id="collapsegeotrue")
                 br
                 html.
-                  <pre class="bg-success">
+                  <pre class="bg-success ejemplo">
                     {
                       "msg": true,"
                       "result": ["
@@ -131,10 +131,10 @@ block content
         figure.highlight()
           pre
             code.language-html(data-lang="html")
-              h3
+              h4
                 kbd() Motorista
               kbd() metodo: get
-              br
+
               br
               b request:ch.sabuesotrack.com/dps/motorista
               br
@@ -150,7 +150,7 @@ block content
               div.collapse(id="collapsetrue")
                 br
                 html.
-                  <pre class="bg-success">
+                  <pre class="bg-success ejemplo">
                     {
                       "msg": true,"
                       "result": ["
@@ -180,40 +180,42 @@ block content
 
 
   h4.text-center Prueba de envio
-  div(ng-controller="request" style="max-height:50vh")
-    form.form-horizontal()
+  div.col-md-12(ng-controller="request")
+
+    form.col-md-6.form-horizontal()
       br
       div.form-group()
-        label.col-sm-2.control-label() Recurso
-        div.col-sm-4()
+        label.col-sm-4.control-label(style="text-align:left") Recurso
+        div.col-sm-6()
           select.form-control(id="Recurso" ng-model="recurso")
             option(value="canbus") Canbus
             option(value="geocerca") Geocerca
             option(value="motorista") Motorista
 
       div.form-group()
-        label.col-sm-2.control-label() Unidad
-        div.col-sm-4()
+        label.col-sm-4.control-label(style="text-align:left") Unidad
+        div.col-sm-6()
           input.form-control(type="number" class="form-control" id="unidad" ng-model="unidad" placeholder="Unidad")
 
       div.form-group()
-        label.col-sm-2.control-label() Fecha Desde
-        div.col-sm-4()
+        label.col-sm-4.control-label(style="text-align:left") Fecha Desde
+        div.col-sm-6()
           html.
             <input ng-model="fechaDesde" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" />
 
       div.form-group()
-        label.col-sm-2.control-label() Fecha Hasta
-        div.col-sm-4()
+        label.col-sm-4.control-label(style="text-align:left") Fecha Hasta
+        div.col-sm-6()
           html.
             <input ng-model="fechaHasta" datetime-picker date-format="yyyy-MM-dd HH:mm:ss" />
       br
       div.form-group()
-        div.col-sm-offset-2.col-sm-10()
+        div.col-sm-offset-4.col-sm-10()
           input(type="submit" class="btn btn-default" id="ok" ng-click="peticion()")
 
-    d-iv(id="result" style="height:100%")
-        pre(ng-bind="resultado")
+    div.col-md-6(id="result" )
+      br
+      pre(ng-bind="resultado" style="max-height:40vh;overflow: scroll; width:100%")
 
 //  form.form-horizontal()
     br

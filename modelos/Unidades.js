@@ -20,7 +20,7 @@ unidadesModel.getImei = function(id,callback)
           callback(err,null)
        }else
        {
-         console.log(row);
+
          callback(null,row)
        }
      });

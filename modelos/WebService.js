@@ -39,7 +39,7 @@ Model.listarIB= function(unidad,unitid, desde,hasta,callback)
   {
     if (connection) {
       var query = 'SELECT idmotorista,'+unitid+' unitid,fecha,escaneo FROM \
-                             Gateway1.motorista \
+                             Gateway1.Motoristas \
                               where unitid = '+unidad+' and fecha between "'+desde+'" and "'+hasta+'"';
       connection.query(query, function (error, rows) {
         connection.release();
@@ -63,7 +63,7 @@ Model.listarGe= function(unidad,unitid, desde,hasta,callback)
     if (connection) {
       var query = 'SELECT '+unitid+' unitid,fecha,geocerca FROM \
                              Gateway1.InicioFinViaje \
-                              where unitid = '+unidad+' and fecha between "'+desde+'" and "'+hasta+'"';
+                              where Imei = '+unidad+' and fecha between "'+desde+'" and "'+hasta+'"';
       connection.query(query, function (error, rows) {
         connection.release();
         if (error) {

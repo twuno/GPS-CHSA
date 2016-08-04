@@ -1,16 +1,22 @@
 doctype html
 html(ng-app="ServiceTest")
   head
+    html.
+      <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
-    link(rel='stylesheet', href="/javascripts/bower_components/angularjs-datetime-picker/angularjs-datetime-picker.css")
+    link(rel='stylesheet', href='stylesheets/style.css')
+    link(rel='stylesheet', href="stylesheets/bootstrap.min.css")
+    link(rel='stylesheet', href="javascripts/bower_components/angularjs-datetime-picker/angularjs-datetime-picker.css")
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css')
 
-    script(src='/javascripts/jquery.min.js')
-    script(src='/javascripts/bootstrap.min.js')
-    script(src='/javascripts/angular.min.js')
-    script(src='/javascripts/Angular.js')
-    script(src='/javascripts/bower_components/angularjs-datetime-picker/angularjs-datetime-picker.js')
+
+    script(src='javascripts/jquery.min.js')
+    script(src='javascripts/bootstrap.min.js')
+    script(src='javascripts/angular.min.js')
+    script(src='javascripts/Angular.js')
+    script(src='javascripts/bower_components/angularjs-datetime-picker/angularjs-datetime-picker.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js')
+
 
   body
     block content
