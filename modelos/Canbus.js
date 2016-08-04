@@ -4,42 +4,41 @@
 
 
 var pool = require('./conexion').ch;
-var Model ={};
+var canbusModel ={};
 
 
-Model.listar= function(unidad,unitid, desde,hasta,callback)
+canbusModel.listar= function(unidad,unit, desde,hasta,callback)
 {
-  pool.getConnection(function(err,connection)
-  {
-    var query = 'SELECT idfms1,'+unitid+' unitid,Odometer,Total_fuel,Actual_Speed,\
+    pool.getConnection(function(err,connection)
+    {
+        var query = 'SELECT idfms1,unitid,Odometer,Total_fuel,Actual_Speed,\
                       Actual_Engine_Speed,Actual_Engine_Torque,Accelerator_Pedal_Position,fecha FROM \
-                             Gateway1.Canbus \
+                             dev.canbus_fms1 \
                               where unitid = '+unidad+' and fecha between "'+desde+'" and "'+hasta+'"';
-    if (connection) {
-      connection.query(query, function (error, rows) {
-        connection.release();
-        if (error) {
-          console.log(error);
-          callback(error, null);
-        } else {
-          callback(null, rows);
+        if (connection) {
+            connection.query(query, function (error, rows) {
+                connection.release();
+                if (error) {
+                    console.log(error);
+                    callback(error, null);
+                } else {
+                    callback(null, rows);
+                }
+            });
+        }else{
+          callback(err,null);
         }
-      });
-    }else{
-      callback(err,null);
-    }
-  });
+    });
 }
 
 
-
-Model.listarIB= function(unidad,unitid, desde,hasta,callback)
+canbusModel.listarIB= function(unidad, desde,hasta,callback)
 {
   pool.getConnection(function(err,connection)
   {
     if (connection) {
-      var query = 'SELECT idmotorista,'+unitid+' unitid,fecha,escaneo FROM \
-                             Gateway1.motorista \
+      var query = 'SELECT idmotorista,unitid,fecha,escaneo FROM \
+                             dev.motorista \
                               where unitid = '+unidad+' and fecha between "'+desde+'" and "'+hasta+'"';
       connection.query(query, function (error, rows) {
         connection.release();
@@ -56,13 +55,13 @@ Model.listarIB= function(unidad,unitid, desde,hasta,callback)
   });
 }
 
-Model.listarGe= function(unidad,unitid, desde,hasta,callback)
+canbusModel.listarGe= function(unidad, desde,hasta,callback)
 {
   pool.getConnection(function(err,connection)
   {
     if (connection) {
-      var query = 'SELECT '+unitid+' unitid,fecha,geocerca FROM \
-                             Gateway1.InicioFinViaje \
+      var query = 'SELECT unitid,fecha,geocerca FROM \
+                             dev.rfid_geocerca \
                               where unitid = '+unidad+' and fecha between "'+desde+'" and "'+hasta+'"';
       connection.query(query, function (error, rows) {
         connection.release();
@@ -80,4 +79,4 @@ Model.listarGe= function(unidad,unitid, desde,hasta,callback)
 }
 
 
-module.exports= Model;
+module.exports= canbusModel;

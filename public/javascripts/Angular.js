@@ -1,7 +1,7 @@
 /**
  * Created by Walter Suazo on 11/02/2016.
  */
-var modulo = angular.module('ServiceTest', ['angularjs-datetime-picker']);
+var modulo = angular.module('ServiceTest', ['angularjs-datetime-picker','angular-loading-bar']);
 
 modulo.controller("request",function($scope,$http)
 {

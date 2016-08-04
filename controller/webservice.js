@@ -1,40 +1,43 @@
 /**
  * Created by Walter Suazo on 18/01/2016.
  */
-//var express = require('express');
-var o2x = require('object-to-xml');
-var canbusModel = require('../modelos/Canbus');
-
-
+var express = require('express');
+var canbusModel = require('../modelos/WebService');
+var unidadModel  = require('../modelos/Unidades');
 
 
 
 
 exports.get = function(req,res,next)
 {
-  canbusModel.listar(function(error,data){
-        if(data )
-        {
-          console.log(data.length);
-            res.set('Content-Type','text/xml');
-            res.send(o2x({
-                'Activity xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://tramaq.stgands.com\" '   : {
-                  Status:'ok',
-                  ErrorCode:null,
-                  ErrorDescription:null,
-                  Locations:{
-                    Location:data}
-                  },
-                  Diagnostics:null
-            }));
-        }
-        else
-        {
-            console.log(error);
-            res.send({msg:false});
-        }
+   unidad =req.query.unidad;
+  fechaDesde=req.query.fechaDesde;
+  fechaHasta=req.query.fechaHasta;
+
+  unidadModel.getImei(unidad,function(err,data){
+    if(err){
+      console.log(error);
+      res.send({msg:false});
+    }
+    unit = data[0]['imei']
+    canbusModel.listar(unit,unidad,fechaDesde,fechaHasta,function(error,data){
+      if(data )
+      {
+        res.send({msg:true,
+          result: data,
+          cantidad:data.length
+        });
+      }
+      else
+      {
+        console.log(error);
+        res.send({msg:false});
+      }
     });
-}
+
+
+  });
+  }
 
 
 exports.getIB = function(req,res,next)
@@ -43,13 +46,21 @@ exports.getIB = function(req,res,next)
   fechaDesde=req.query.fechaDesde;
   fechaHasta=req.query.fechaHasta;
 
+  unidadModel.getImei(unidad,function(err,data){
+    if(err){
+      console.log(error);
+      res.send({msg:false});
+    }
 
-  canbusModel.listarIB(unidad,fechaDesde,fechaHasta,function(error,data){
+    unit = data[0]['imei']
+
+
+    canbusModel.listarIB(unit,unidad,fechaDesde,fechaHasta,function(error,data){
     if(data )
     {
       res.send({msg:true,
         result: data,
-
+        cantidad:data.length
       });
     }
     else
@@ -58,6 +69,8 @@ exports.getIB = function(req,res,next)
       res.send({msg:false});
     }
   });
+
+  })
 }
 
 
@@ -67,19 +80,26 @@ exports.getGE = function(req,res,next)
   fechaDesde=req.query.fechaDesde;
   fechaHasta=req.query.fechaHasta;
 
-
-  canbusModel.listarGe(unidad,fechaDesde,fechaHasta,function(error,data){
-    if(data )
-    {
-      res.send({msg:true,
-        result: data,
-
-      });
-    }
-    else
-    {
+  unidadModel.getImei(unidad,function(err,data) {
+    if (err) {
       console.log(error);
-      res.send({msg:false});
+      res.send({msg: false});
     }
-  });
+
+    unit = data[0]['imei']
+
+    canbusModel.listarGe(unit,unidad, fechaDesde, fechaHasta, function (error, data) {
+      if (data) {
+        res.send({
+          msg: true,
+          result: data,
+          cantidad: data.length
+        });
+      }
+      else {
+        console.log(error);
+        res.send({msg: false});
+      }
+    });
+  })
 }
