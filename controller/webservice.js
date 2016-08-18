@@ -19,23 +19,26 @@ exports.get = function(req,res,next)
       console.log(error);
       res.send({msg:false});
     }
-    unit = data[0]['imei']
-    canbusModel.listar(unit,unidad,fechaDesde,fechaHasta,function(error,data){
-      if(data )
-      {
-        res.send({msg:true,
-          result: data,
-          cantidad:data.length
-        });
-      }
-      else
-      {
-        console.log(error);
-        res.send({msg:false});
-      }
-    });
+    if (data.length > 0) {
+      unit = data[0]['imei']
+      canbusModel.listar(unit, unidad, fechaDesde, fechaHasta, function (error, data) {
+        if (data) {
+          res.send({
+            msg: true,
+            result: data,
+            cantidad: data.length
+          });
+        }
+        else {
+          console.log(error);
+          res.send({msg: false});
+        }
+      });
 
-
+    }else
+    {
+      res.send({msg: false});
+    }
   });
   }
 
@@ -51,25 +54,27 @@ exports.getIB = function(req,res,next)
       console.log(error);
       res.send({msg:false});
     }
+    if (data.length > 0) {
+      unit = data[0]['imei']
 
-    unit = data[0]['imei']
 
-
-    canbusModel.listarIB(unit,unidad,fechaDesde,fechaHasta,function(error,data){
-    if(data )
-    {
-      res.send({msg:true,
-        result: data,
-        cantidad:data.length
+      canbusModel.listarIB(unit, unidad, fechaDesde, fechaHasta, function (error, data) {
+        if (data) {
+          res.send({
+            msg: true,
+            result: data,
+            cantidad: data.length
+          });
+        }
+        else {
+          console.log(error);
+          res.send({msg: false});
+        }
       });
-    }
-    else
+    }else
     {
-      console.log(error);
-      res.send({msg:false});
+      res.send({msg: false});
     }
-  });
-
   })
 }
 
@@ -85,10 +90,10 @@ exports.getGE = function(req,res,next)
       console.log(error);
       res.send({msg: false});
     }
+    if (data.length > 0) {
+      unit = data[0]['imei']
 
-    unit = data[0]['imei']
-
-    canbusModel.listarGe(unit,unidad, fechaDesde, fechaHasta, function (error, data) {
+      canbusModel.listarGe(unit, unidad, fechaDesde, fechaHasta, function (error, data) {
       if (data) {
         res.send({
           msg: true,
@@ -101,5 +106,9 @@ exports.getGE = function(req,res,next)
         res.send({msg: false});
       }
     });
+    }else
+    {
+      res.send({msg: false});
+    }
   })
 }

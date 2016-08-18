@@ -11,7 +11,8 @@ unidadesModel.getImei = function(id,callback)
 {
   pool.getConnection(function(err,con) {
    if(con){
-     query= "select imei from dev.DeviceNAME where UNITID=substr("+id+",7,4)";
+     query= "select imei from dev.DeviceNAME where UNITID =substr("+id+",7,4)";
+     
      con.query(query,function(err,row){
        con.release();
        if(err)

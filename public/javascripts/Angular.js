@@ -19,11 +19,11 @@ modulo.controller("request",function($scope,$http)
 
       $http({
         method:"GET",
-        url: "/"+$scope.recurso,
+        url: "dps/"+$scope.recurso,
         params:param})
           .then(function(response) {
             $scope.resultado = JSON.stringify(response.data,undefined,2);
-            console.log($scope.resultado)
+//            console.log($scope.resultado)
           });
 
   }
